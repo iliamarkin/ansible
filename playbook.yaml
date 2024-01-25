@@ -1,0 +1,39 @@
+- hosts: webservers
+  tasks:
+    - name: "create user arya"
+      ansible.builtin.user:
+        name: arya
+        password: "{{ '123456' | password_hash('sha512') }}"
+        state: present
+        createhome: yes
+      become: yes
+      tags: create_user
+    - name: "create user sansa"
+      ansible.builtin.user:
+        name: sansa
+        password: "{{ '123456' | password_hash('sha512') }}"
+        state: present
+        createhome: yes
+      become: yes
+      tags: create_user
+    - name: "create user tirion"
+      ansible.builtin.user:
+        name: tirion
+        password: "{{ '123456' | password_hash('sha512') }}"
+        state: present
+        createhome: yes
+      become: yes
+      tags: create_user
+    - name: "update cache"
+      ansible.builtin.apt:
+        update_cache: yes
+      become: yes
+      tags: update_cache
+    - name: "install git"
+      ansible.builtin.apt:
+        name: git
+        state: present
+        update_cache: yes
+      become: yes
+      tags: install_git
+
