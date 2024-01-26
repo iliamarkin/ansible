@@ -1,4 +1,5 @@
 - hosts: webservers
+  gather_facts: no
   tasks:
     - name: "create user arya"
       ansible.builtin.user:
